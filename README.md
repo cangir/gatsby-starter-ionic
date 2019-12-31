@@ -79,7 +79,9 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
     ├── LICENSE
     ├── package-lock.json
     ├── package.json
-    └── README.md
+    ├── README.md
+    ├── tsconfig.json
+    └── tslint.json
 
 1.  **`/__mocks__`**: Location for all your dummy module needs.
 
@@ -114,6 +116,10 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
 16. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
 
 17. **`README.md`**: A text file containing useful reference information about your project.
+
+18. **`tsconfig.json`**: Configuration for Typescript
+
+19. **`tslint.json`**: Typescript linting options.
 
 ## 🎓 Learning Gatsby
 

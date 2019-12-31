@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { ReactNode } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { IonApp, IonPage, IonContent, IonFooter, IonToolbar, IonTitle } from '@ionic/react'
@@ -33,7 +33,11 @@ import '@ionic/react/css/display.css'
 /* Global style override */
 import '../styles/overrides.css'
 
-const Layout = ({ children }) => {
+interface Props { 
+  children: ReactNode
+}
+
+const Layout = ({ children }: Props) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -48,7 +52,7 @@ const Layout = ({ children }) => {
     <IonApp>
       <IonPage>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <IonContent className={'ion-padding'} id="content" name="content" >
+        <IonContent className={'ion-padding'} id="content">
           {children}
         </IonContent>
         <IonFooter>
