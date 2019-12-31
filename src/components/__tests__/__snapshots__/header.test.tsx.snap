@@ -2,6 +2,12 @@
 
 exports[`Header renders correctly 1`] = `
 <ion-header>
+  <a
+    className="skip-link"
+    href="#content"
+  >
+    Skip to main content
+  </a>
   <ion-toolbar>
     <ion-title>
       Default Starter
