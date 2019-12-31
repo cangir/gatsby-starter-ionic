@@ -6,10 +6,12 @@
   "author": "Barry Low <barry@studiobear.co>",
   "dependencies": {
     "@ionic/react": "^4.11.7",
+    "classnames": "^2.2.6",
     "gatsby": "^2.18.17",
     "gatsby-image": "^2.2.37",
     "gatsby-plugin-manifest": "^2.2.34",
     "gatsby-plugin-offline": "^3.0.30",
+    "gatsby-plugin-react-axe": "^0.3.0",
     "gatsby-plugin-react-helmet": "^3.1.18",
     "gatsby-plugin-sharp": "^2.3.10",
     "gatsby-source-filesystem": "^2.1.43",
@@ -21,12 +23,17 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "@testing-library/cypress": "^5.0.2",
+    "axe-core": "^3.4.1",
     "babel-jest": "^24.9.0",
     "babel-preset-gatsby": "^0.2.26",
+    "cypress": "^3.8.1",
+    "cypress-axe": "^0.5.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
     "prettier": "^1.19.1",
-    "react-test-renderer": "^16.12.0"
+    "react-test-renderer": "^16.12.0",
+    "start-server-and-test": "^1.10.6"
   },
   "keywords": [
     "gatsby"
@@ -39,7 +46,9 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "jest",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "cy:open": "cypress open",
+    "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open"
   },
   "repository": {
     "type": "git",
