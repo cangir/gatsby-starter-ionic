@@ -9,6 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { IonApp, IonPage, IonContent, IonFooter, IonToolbar, IonTitle } from '@ionic/react'
+// import classNames from 'classnames'
 
 import Header from "./header"
 import "./layout.css"
@@ -29,6 +30,9 @@ import '@ionic/react/css/text-transformation.css'
 import '@ionic/react/css/flex-utils.css'
 import '@ionic/react/css/display.css'
 
+/* Global style override */
+import '../styles/overrides.css'
+
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
@@ -44,8 +48,8 @@ const Layout = ({ children }) => {
     <IonApp>
       <IonPage>
         <Header siteTitle={data.site.siteMetadata.title} />
-        <IonContent className="ion-padding">
-          <main>{children}</main>
+        <IonContent className={'ion-padding'} id="content" name="content" >
+          {children}
         </IonContent>
         <IonFooter>
           <IonToolbar>

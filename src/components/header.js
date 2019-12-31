@@ -4,6 +4,7 @@ import { IonHeader, IonTitle, IonToolbar } from '@ionic/react'
 
 const Header = ({ siteTitle }) => (
   <IonHeader>
+    <a className="skip-link" href="#content">Skip to main content</a>
     <IonToolbar>
       <IonTitle>
         {siteTitle}
