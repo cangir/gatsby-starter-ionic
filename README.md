@@ -129,6 +129,16 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 
 - **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
 
+## Resources
+
+A variety of docs and other sources were used to help build this starter. 
+
+- [Ionic Framework](https://ionicframework.com/docs/) - docs for react components, developing PWAs and using Ionic-flavored Native APIs.
+- [Jest](https://jestjs.io/docs/en/getting-started) - Docs for unit testing.
+- [Cypress](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html#Add-a-test-file) - Docs and more for writing our end-to-end tests.
+- [Gatsby Typescript Blog](https://github.com/assainov/gatsby-extensive-starter-typescript) - and it's related exploratory blog series [Migrating Gatsby to Typescript](https://www.extensive.one/migrating-gatsby-to-typescript-introduction/) 
+- [Axe-core](https://github.com/dequelabs/axe-core) - Accessibility tools provided by Dequelabs. [Docs](https://github.com/dequelabs/axe-core/tree/develop/doc) + [rules](https://dequeuniversity.com/rules/axe/3.4) explained deeper on dequeuniveristy.com
+
 ## 💫 Deploy
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://gitlab.com/studiobear/gatsby-starter-ionic.git)
