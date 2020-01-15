@@ -1,18 +1,10 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
-import React, { ReactNode } from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import React, { ReactNode } from 'react'
+import { useStaticQuery, graphql } from 'gatsby'
 import { IonApp, IonPage, IonContent, IonFooter, IonToolbar, IonTitle } from '@ionic/react'
 // import classNames from 'classnames'
 
-import Header from "./header"
-import "./layout.css"
+import Header from './header'
+import './layout.css'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
@@ -33,44 +25,27 @@ import '@ionic/react/css/display.css'
 /* Global style override */
 import '../styles/overrides.css'
 
-interface Props { 
+interface LayoutProps {
+  title: string
   children: ReactNode
 }
 
-const Layout = ({ children }: Props) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
-  return (
-    <IonApp>
-      <IonPage>
-        <Header siteTitle={data.site.siteMetadata.title} />
-        <IonContent className={'ion-padding'} id="content">
-          {children}
-        </IonContent>
-        <IonFooter>
-          <IonToolbar>
-            <IonTitle>
-              © {new Date().getFullYear()}, Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </IonTitle>
-          </IonToolbar>
-        </IonFooter>
-      </IonPage>
-    </IonApp>
-  )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+export const Layout = ({ title, children }: LayoutProps) => (
+  <IonApp>
+    <IonPage>
+      <Header siteTitle={title} />
+      <IonContent className={'ion-padding'}>{children}</IonContent>
+      <IonFooter data-testid="contentinfo">
+        <IonToolbar>
+          <IonTitle size="small">
+            © {new Date().getFullYear()}, Built with
+            {` `}
+            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          </IonTitle>
+        </IonToolbar>
+      </IonFooter>
+    </IonPage>
+  </IonApp>
+)
 
 export default Layout

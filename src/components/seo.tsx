@@ -5,22 +5,25 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import { Helmet } from 'react-helmet-async'
+import { useStaticQuery, graphql } from 'gatsby'
 
-interface Props {
+// import { SeoQuery } from './__generated__/SeoQuery';
+import { DeepPropertyAccess } from '../utils/deep-property-access'
+import labels from '../../content/website/labels'
+
+interface IProps {
   description?: string
   lang?: string
-  meta?: []
+  meta?: any[] // eslint-disable-line
   title: string
 }
 
-function SEO({ description, lang, meta, title }: Props) {
-  const { site } = useStaticQuery(
+const SEO: React.FC<IProps> = ({ description = ``, lang = `en`, meta = [], title }) => {
+  const data = useStaticQuery(
     graphql`
-      query {
+      query SeoQuery {
         site {
           siteMetadata {
             title
@@ -29,18 +32,25 @@ function SEO({ description, lang, meta, title }: Props) {
           }
         }
       }
-    `
+    `,
   )
 
-  const metaDescription = description || site.siteMetadata.description
+  const helmetContext = {}
+
+  const siteDescription = DeepPropertyAccess.get(data, 'site', 'siteMetadata', 'description') || labels.notAvailable
+  const siteTitle = DeepPropertyAccess.get(data, 'site', 'siteMetadata', 'title') || labels.notAvailable
+  const siteAuthor = DeepPropertyAccess.get(data, 'site', 'siteMetadata', 'author') || labels.notAvailable
+
+  const metaDescription = description || siteDescription
+  const pageTitle = title || siteTitle
 
   return (
     <Helmet
       htmlAttributes={{
         lang,
       }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={pageTitle}
+      titleTemplate={`%s | ${siteTitle}`}
       meta={[
         {
           name: `description`,
@@ -48,7 +58,7 @@ function SEO({ description, lang, meta, title }: Props) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           property: `og:description`,
@@ -64,11 +74,11 @@ function SEO({ description, lang, meta, title }: Props) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: siteAuthor,
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: pageTitle,
         },
         {
           name: `twitter:description`,
@@ -77,19 +87,6 @@ function SEO({ description, lang, meta, title }: Props) {
       ].concat(meta)}
     />
   )
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
 }
 
 export default SEO

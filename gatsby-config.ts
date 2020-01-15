@@ -5,7 +5,7 @@ export default {
     author: `@bearcanrun`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-react-helmet-async`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-typescript`,
     {
@@ -13,6 +13,35 @@ export default {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/blog`,
+        name: `blog`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+          `gatsby-remark-prismjs`,
+          `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-smartypants`,
+        ],
+      },
+    },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
       },
     },
     `gatsby-plugin-sharp`,
@@ -38,6 +67,10 @@ export default {
           // Your axe-core options.
         },
       },
+    },
+    {
+      resolve: 'gatsby-plugin-codegen',
+      options: {},
     },
   ],
 }
